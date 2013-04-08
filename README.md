@@ -40,11 +40,10 @@ which returns the product price formatted as a currency string in the user local
 
 ## Usage
 
-### Initial setup
-
-**AppDelegate.m**
+### Initial setup 
 
 ```objective-c
+// In your AppDelegate
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Initialize CargoBayManager (you have to implement the contentDelegate first!)
@@ -60,6 +59,7 @@ which returns the product price formatted as a currency string in the user local
 ### contentDelegate sample implementation
 
 ```objective-c
+// contentDelegate should be a singleton object available at all times through the lifetime of your app
 - (NSArray *)productIdentifiers
 {
     NSMutableArray *productIdentifiers = [[NSMutableArray alloc] init];
@@ -85,6 +85,7 @@ which returns the product price formatted as a currency string in the user local
 ### UIDelegate sample implementation
 
 ```objective-c
+// UIDelegate is optional. Normally, it will be your StoreViewController
 - (void)transactionDidFinishWithSuccess:(BOOL)success
 {
     if ( success )

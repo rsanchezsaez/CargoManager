@@ -139,4 +139,4 @@ which returns the product price formatted as a currency string in the user local
 
 ## License
 
-CargoBayManager is available under the MIT license. See the LICENSE file for more info.
+CargoBayManager is dually available under the MIT license and the Creative Commons Attribution 3.0 Unported licenses. See the LICENSE file for more info.

@@ -1,9 +1,9 @@
 # CargoBayManager
 **The Essential CargoBay Companion**
 
-[`StoreKit`](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/StoreKit_Collection/) is the Apple framework for [making In-App Purchases](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html). It's pretty good, but it is ver low level and has a few rough edges. [CargoBay](https://github.com/mattt/CargoBay) is really nifty, but it keeps coding of In-App Purchases quite at a low level and it still is an involved process. 
+[`StoreKit`](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/StoreKit_Collection/) is the Apple framework for [making In-App Purchases](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html). It's pretty good, but it is ver low level and has a few rough edges. [`CargoBay`](https://github.com/mattt/CargoBay) is really nifty, but it keeps coding of In-App Purchases quite at a low level and it still is an involved process. 
 
-Please note that before attempting to use *CargoBayManager* or *CargoBay* it is strongly recommended that you fully understand how StoreKit works. The [In-App Purchase Programming Guide](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html) by Apple provides a concise and gentle introduction.
+Please note that before attempting to use `CargoBayManager` or `CargoBay` it is strongly recommended that you fully understand how StoreKit works. The [In-App Purchase Programming Guide](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html) by Apple provides a concise and gentle introduction.
 
 `CargoBayManager` abstracts everything, by providing a simple and pretty much automated manager for your In-App Purchases. With *CargoBayManager* you only have to implement two protocols in your own classes. You will need these as *CargoBayManager* delegates:
 - An object conforming to the `CargoBayManagerContentDelegate` protocol. This delegate is mandatory. It provides all available Product ID strings to *CargoBayManager* (which in turn caches the returned products for store population). It also should respond to successful transaction events by providing the user requested content and storing it persistently to disk. Ideally, this delegate should be a singleton and should be alive at all times (a transaction is kept as pending even after relaunching the game, so it can complete even when you are not looking at the store UI).
@@ -24,7 +24,12 @@ In addition to the protocols, *CargoBayManager* provides these methods:
 - (void)buyProduct:(SKProduct *)product;
 ```
 
-Finally, `CargoBayManager` provides the `productRequestDidReceiveResponse` and `productRequestError` *BOOL properties* and also sends the `SMProductRequestDidReceiveResponseNotification` notification after it caches the products. These are needed because if you enter the store quick enough after the app launches, the initial product request will not have resolved from Apple servers yet, so you won't be able to populate item prices. Instead, you can observe this notification to populate your store UI as soon as they load (you can do that even having the store UI open in your app, as to not artificially delay the user entering the store).
+Finally, `CargoBayManager` provides the following properties:
+```objective-c
+@property (nonatomic, readonly) BOOL productRequestDidReceiveResponse;
+@property (nonatomic, readonly) BOOL productRequestError;
+```
+and also sends the `SMProductRequestDidReceiveResponseNotification` notification after it caches the products. These are needed because if you enter the store quick enough after the app launches, the initial product request will not have resolved from Apple servers yet, so you won't be able to populate item prices. Instead, you can observe this notification to populate your store UI as soon as they load (you can do that even having the store UI open in your app, as to not artificially delay the user entering the store).
 
 Last but not least, CargoBayManager includes a category for Apple's SKProduct, which provides the following
 ```objective-c
@@ -93,6 +98,17 @@ which returns the product price formatted as a currency string in the user local
 		// YOUR CODE GOES HERE
     }    
 }
+
+// You can respond to the SMProductRequestDidReceiveResponseNotification in the following manner
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(reloadStoreProducts:)
+                                                 name:SMProductRequestDidReceiveResponseNotification
+                                               object:[CargoBayManager sharedManager]];
+}
 ```
 
 ### CargoBayManagerContentDelegate protocol specification
@@ -122,8 +138,8 @@ which returns the product price formatted as a currency string in the user local
 ```objective-c
 @protocol CargoBayManagerUIDelegate <NSObject>
 
-// Implement this method to update UI after a IAP has finished
-// This method is called both for successful and failed transactions
+// Implement this method to update UI after a IAP has finished.
+// This method is called both for successful and failed transactions.
 - (void)transactionDidFinishWithSuccess:(BOOL)success;
 
 @optional

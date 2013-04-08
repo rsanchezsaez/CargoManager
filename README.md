@@ -5,7 +5,7 @@
 
 Please note that before attempting to use `CargoBayManager` or `CargoBay` it is strongly recommended that you fully understand how StoreKit works. The [In-App Purchase Programming Guide](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html) by Apple provides a concise and gentle introduction.
 
-`CargoBayManager` abstracts everything, by providing a simple and pretty much automated manager for your In-App Purchases. With *CargoBayManager* you only have to implement two protocols in your own classes. You will need these as *CargoBayManager* delegates:
+`CargoBayManager` abstracts most details of *StoreKit* and *CargoBay* by providing a simple and pretty much automated manager for your In-App Purchases. With *CargoBayManager* you only have to implement two protocols in your own classes. You will need these as *CargoBayManager* delegates:
 - An object conforming to the `CargoBayManagerContentDelegate` protocol. This delegate is mandatory. It provides all available Product ID strings to *CargoBayManager* (which in turn caches the returned products for store population). It also should respond to successful transaction events by providing the user requested content and storing it persistently to disk. Ideally, this delegate should be a singleton and should be alive at all times (a transaction is kept as pending even after relaunching the game, so it can complete even when you are not looking at the store UI).
 - An object conforming to the `CargoBayManagerUIDelegate` protocol. This delegate is optional. It should update the UI on both transaction successful and transaction failed events (if you create a modal "processing IAP screen" you can dismiss it by using this delegate).
 

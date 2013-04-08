@@ -42,6 +42,7 @@ which returns the product price formatted as a currency string in the user local
 {
     // Initialize CargoBayManager (you have to implement the contentDelegate first!)
     [CargoBayManager sharedManager].contentDelegate = [GameData sharedData];
+
 	// This call sends a product request to CargoBay and caches the resulting products
     [[CargoBayManager sharedManager] loadStore];
 
@@ -99,6 +100,7 @@ which returns the product price formatted as a currency string in the user local
 
 // This method should return an array with all the productIdentifiers used by your App
 - (NSArray *)productIdentifiers;
+
 // Implement this method to provide content
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier;
 

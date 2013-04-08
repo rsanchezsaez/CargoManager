@@ -29,7 +29,7 @@ Finally, `CargoBayManager` provides the following properties:
 @property (nonatomic, readonly) BOOL productRequestDidReceiveResponse;
 @property (nonatomic, readonly) BOOL productRequestError;
 ```
-and also sends the `SMProductRequestDidReceiveResponseNotification` notification after it caches the products. These are needed because if you enter the store quick enough after the app launches, the initial product request will not have resolved from Apple servers yet, so you won't be able to populate item prices. Instead, you can observe this notification to populate your store UI as soon as they load (you can do that even having the store UI open in your app, as to not artificially delay the user entering the store).
+and also sends the `CMProductRequestDidReceiveResponseNotification` notification after it caches the products. These are needed because if you enter the store quick enough after the app launches, the initial product request will not have resolved from Apple servers yet, so you won't be able to populate item prices. Instead, you can observe this notification to populate your store UI as soon as they load (you can do that even having the store UI open in your app, as to not artificially delay the user entering the store).
 
 Last but not least, CargoBayManager includes a category for Apple's SKProduct, which provides the following
 ```objective-c
@@ -100,14 +100,14 @@ which returns the product price formatted as a currency string in the user local
     }    
 }
 
-// You can respond to the SMProductRequestDidReceiveResponseNotification in the following manner.
+// You can respond to the CMProductRequestDidReceiveResponseNotification in the following manner.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(reloadStoreProducts:)
-                                                 name:SMProductRequestDidReceiveResponseNotification
+                                                 name:CMProductRequestDidReceiveResponseNotification
                                                object:[CargoBayManager sharedManager]];
 }
 ```

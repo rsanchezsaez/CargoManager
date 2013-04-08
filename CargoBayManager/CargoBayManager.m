@@ -27,16 +27,16 @@
 #import "CargoBay.h"
 
 
-NSString *const SMProductRequestDidReceiveResponseNotification = @"SMProductRequestDidReveiveResponseNotification";
+NSString *const CMProductRequestDidReceiveResponseNotification = @"CMProductRequestDidReveiveResponseNotification";
 
 
-NSString *const SMTransactionFailedAlertTitle = @"In App Purchase failed";
-NSString *const SMTransactionFailedAlertMessage = @"The purchase failed due to an error. Please, try again later.";
+NSString *const CMTransactionFailedAlertTitle = @"In App Purchase failed";
+NSString *const CMTransactionFailedAlertMessage = @"The purchase failed due to an error. Please, try again later.";
 
-NSString *const SMCannotMakePaymentsAlertTitle = @"In App Purchases are disabled";
-NSString *const SMCannotMakePaymentsAlertMessage = @"You can enable them again in Settings.";
+NSString *const CMCannotMakePaymentsAlertTitle = @"In App Purchases are disabled";
+NSString *const CMCannotMakePaymentsAlertMessage = @"You can enable them again in Settings.";
 
-NSString *const SMAlertCancelButtonTitle = @"Ok";
+NSString *const CMAlertCancelButtonTitle = @"Ok";
 
 
 @interface CargoBayManager ()
@@ -163,7 +163,7 @@ static CargoBayManager *_storeKitManager = nil;
     if (error) {
         notificationInfo = @{ @"error" : error };
     }
-    NSNotification *notification = [NSNotification notificationWithName:SMProductRequestDidReceiveResponseNotification
+    NSNotification *notification = [NSNotification notificationWithName:CMProductRequestDidReceiveResponseNotification
                                                                  object:self
                                                                userInfo:notificationInfo];
     [[NSNotificationCenter defaultCenter] postNotification:notification];
@@ -229,10 +229,10 @@ static CargoBayManager *_storeKitManager = nil;
 
     if (transaction.error.code != SKErrorPaymentCancelled) {
         // Display a transaction error here
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:SMTransactionFailedAlertTitle
-                                                        message:SMTransactionFailedAlertMessage
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:CMTransactionFailedAlertTitle
+                                                        message:CMTransactionFailedAlertMessage
                                                        delegate:nil
-                                              cancelButtonTitle:SMAlertCancelButtonTitle
+                                              cancelButtonTitle:CMAlertCancelButtonTitle
                                               otherButtonTitles:nil];
         [alert show];
     }
@@ -311,10 +311,10 @@ static CargoBayManager *_storeKitManager = nil;
         // DLog(@"IAP are disabled.")
         // Warn the user that purchases are disabled.
         // Display a transaction error here
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:SMCannotMakePaymentsAlertTitle
-                                                        message:SMCannotMakePaymentsAlertMessage
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:CMCannotMakePaymentsAlertTitle
+                                                        message:CMCannotMakePaymentsAlertMessage
                                                        delegate:nil
-                                              cancelButtonTitle:SMAlertCancelButtonTitle
+                                              cancelButtonTitle:CMAlertCancelButtonTitle
                                               otherButtonTitles:nil];
         [alert show];
     }

@@ -54,7 +54,9 @@ static CargoBayManager *_storeKitManager = nil;
 + (CargoBayManager *)sharedManager
 {
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_once(&onceToken,
+                  ^
+    {
         _storeKitManager = [[CargoBayManager alloc] init];
     });
     return _storeKitManager;
@@ -62,11 +64,13 @@ static CargoBayManager *_storeKitManager = nil;
 
 - (id)init
 {
-    if (_storeKitManager) {
+    if (_storeKitManager)
+    {
         return _storeKitManager;
     }
 
-    if ( !(self = [super init]) ) {
+    if ( !(self = [super init]) )
+    {
         return nil;
     }
 
@@ -132,7 +136,8 @@ static CargoBayManager *_storeKitManager = nil;
     __weak CargoBayManager *weakSelf = self;
     [[CargoBay sharedManager] productsWithIdentifiers:[NSSet setWithArray:identifiers]
                                               success:
-     ^(NSArray *products, NSArray *invalidIdentifiers) {
+     ^(NSArray *products, NSArray *invalidIdentifiers)
+    {
          // Store cached products and send notification
          weakSelf.cachedProducts = products;
          weakSelf.productRequestDidReceiveResponse = YES;
@@ -144,7 +149,8 @@ static CargoBayManager *_storeKitManager = nil;
          // DLog(@"Invalid Identifiers: %@", invalidIdentifiers);
      }
                                               failure:
-     ^(NSError *error) {
+     ^(NSError *error)
+    {
          // Note error and send notification
          weakSelf.productRequestDidReceiveResponse = YES;
          weakSelf.productRequestError = YES;
@@ -160,7 +166,8 @@ static CargoBayManager *_storeKitManager = nil;
 - (void)_postProductRequestDidReceiveResponseNotificationWithError:(NSError *)error
 {
     NSDictionary *notificationInfo = nil;
-    if (error) {
+    if (error)
+    {
         notificationInfo = @{ @"error" : error };
     }
     NSNotification *notification = [NSNotification notificationWithName:CMProductRequestDidReceiveResponseNotification
@@ -184,7 +191,8 @@ static CargoBayManager *_storeKitManager = nil;
             {
                 // DLog(@"Transaction verified.");
                 [weakSelf completeTransaction:transaction];
-            } failure:
+            }
+                                                failure:
              ^(NSError *error)
             {
                 // DLog(@"Transaction vertification failed.");
@@ -302,12 +310,15 @@ static CargoBayManager *_storeKitManager = nil;
 
 - (void)buyProduct:(SKProduct *)product
 {
-    if ([SKPaymentQueue canMakePayments]) {
+    if ([SKPaymentQueue canMakePayments])
+    {
         // DLog(@"Queuing payment.")
         // Queue payment
         SKPayment *payment = [SKPayment paymentWithProduct:product];
         [[SKPaymentQueue defaultQueue] addPayment:payment];
-    } else {
+    }
+    else
+    {
         // DLog(@"IAP are disabled.")
         // Warn the user that purchases are disabled.
         // Display a transaction error here

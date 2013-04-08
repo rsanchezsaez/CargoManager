@@ -17,10 +17,10 @@ In addition to the protocols, *CargoBayManager* provides these methods:
 // launches the initial product request.
 - (void)loadStore;
 
-// Get a product from the cached products
+// Get a product from the cached products.
 - (SKProduct *)productForIdentifier:(NSString *)identifier;
 
-// Start an In-App purchase
+// Start an In-App purchase.
 - (void)buyProduct:(SKProduct *)product;
 ```
 
@@ -43,13 +43,13 @@ which returns the product price formatted as a currency string in the user local
 ### Initial setup 
 
 ```objective-c
-// In your AppDelegate
+// Your AppDelegate.m
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    // Initialize CargoBayManager (you have to implement the contentDelegate first!)
+    // Initialize CargoBayManager (you have to implement the contentDelegate first!).
     [CargoBayManager sharedManager].contentDelegate = [GameData sharedData];
 
-	// This call sends a product request to CargoBay and caches the resulting products
+	// This call sends a product request to CargoBay and caches the resulting products.
     [[CargoBayManager sharedManager] loadStore];
 
     return YES;
@@ -64,20 +64,20 @@ which returns the product price formatted as a currency string in the user local
 {
     NSMutableArray *productIdentifiers = [[NSMutableArray alloc] init];
 
-	// Populate the productIdentifiers
+	// Populate the productIdentifiers.
 	// YOUR CODE GOES HERE
 
-    // Return a non-mutable copy
+    // Return a non-mutable copy.
     return [NSArray arrayWithArray:productIdentifiers];
 }
 
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier
 {
     // Implement the result of a successful IAP
-    // on the according productIdentifier
+    // on the according productIdentifier.
 	// YOUR CODE GOES HERE
 
-    // Save user data to disk
+    // Save user data to disk.
 	// YOUR CODE GOES HERE
 }
 ```
@@ -85,7 +85,7 @@ which returns the product price formatted as a currency string in the user local
 ### UIDelegate sample implementation
 
 ```objective-c
-// UIDelegate is optional. Normally, it will be your StoreViewController
+// UIDelegate is optional. Normally, it will be your StoreViewController.
 - (void)transactionDidFinishWithSuccess:(BOOL)success
 {
     if ( success )
@@ -100,7 +100,7 @@ which returns the product price formatted as a currency string in the user local
     }    
 }
 
-// You can respond to the SMProductRequestDidReceiveResponseNotification in the following manner
+// You can respond to the SMProductRequestDidReceiveResponseNotification in the following manner.
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -117,18 +117,18 @@ which returns the product price formatted as a currency string in the user local
 ```objective-c
 @protocol CargoBayManagerContentDelegate <NSObject>
 
-// This method should return an array with all the productIdentifiers used by your App
+// This method should return an array with all the productIdentifiers used by your App.
 - (NSArray *)productIdentifiers;
 
-// Implement this method to provide content
+// Implement this method to provide content.
 - (void)provideContentForProductIdentifier:(NSString *)productIdentifier;
 
 @optional
 
-// Use this method if you want to store the transaction for your records
+// Use this method if you want to store the transaction for your records.
 - (void)recordTransaction:(SKPaymentTransaction *)transaction;
 
-// Use this method to manage download data
+// Use this method to manage download data.
 - (void)downloadUpdated:(SKDownload *)download;
 
 @end
@@ -145,8 +145,8 @@ which returns the product price formatted as a currency string in the user local
 
 @optional
 
-// Implement this method to update UI after a IAP restore has finished
-// This method is called both for successful and failed restores
+// Implement this method to update UI after a IAP restore has finished.
+// This method is called both for successful and failed restores.
 - (void)restoredTransactionsDidFinishWithSuccess:(BOOL)success;
 
 @end

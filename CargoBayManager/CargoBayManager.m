@@ -252,8 +252,8 @@ static CargoBayManager *_storeKitManager = nil;
 - (void)transactionRemoved:(SKPaymentTransaction *)transaction
 {
     // DLog(@"{ transaction.transactionState: %d transaction.error: %@ }",
-         transaction.transactionState,
-         transaction.error);
+    //     transaction.transactionState,
+    //     transaction.error);
 
     switch (transaction.transactionState)
     {

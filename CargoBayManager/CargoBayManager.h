@@ -25,7 +25,7 @@
 #import <StoreKit/StoreKit.h>
 
 
-extern NSString *const SMProductRequestDidReceiveResponseNotification;
+extern NSString *const CMProductRequestDidReceiveResponseNotification;
 
 
 @class SKProduct;

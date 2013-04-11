@@ -1,5 +1,5 @@
 # CargoManager
-**The Essential CargoBay Companion**
+**The Essential StoreKit/CargoBay Companion**
 
 [`StoreKit`](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/StoreKit_Collection/) is the Apple framework for [making In-App Purchases](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html). It's pretty good, but it is ver low level and has a few rough edges. [`CargoBay`](https://github.com/mattt/CargoBay) is really nifty, but it keeps coding of In-App Purchases quite at a low level and it still is an involved process. 
 
@@ -137,7 +137,7 @@ which returns the product price formatted as a currency string in the user local
 ### CargoManagerUIDelegate protocol specification
 
 ```objective-c
-@protocol CargoManagerUIDelegate <NSObject>
+@protocol CargoBayManagerUIDelegate <NSObject>
 
 // Implement this method to update UI after a IAP has finished.
 // This method is called both for successful and failed transactions.
@@ -158,4 +158,4 @@ which returns the product price formatted as a currency string in the user local
 
 ## License
 
-CargoManager is dually available under the MIT and the Creative Commons Attribution 3.0 Unported licenses. See the LICENSE file for more info.
+CargoBayManager is available under the FreeBSD license. See the LICENSE file for more info.

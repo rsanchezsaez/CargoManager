@@ -1,5 +1,5 @@
 //
-//  CargoBayManager.m
+//  CargoManager.m
 //
 //  Copyright (c) 2013 Ricardo Sánchez-Sáez (http://sanchez-saez.com/)
 //
@@ -22,7 +22,7 @@
 //  THE SOFTWARE.
 //
 
-#import "CargoBayManager.h"
+#import "CargoManager.h"
 
 #import "CargoBay.h"
 
@@ -39,7 +39,7 @@ NSString *const CMCannotMakePaymentsAlertMessage = @"You can enable them again i
 NSString *const CMAlertCancelButtonTitle = @"Ok";
 
 
-@interface CargoBayManager ()
+@interface CargoManager ()
 
 @property (nonatomic) BOOL productRequestDidReceiveResponse;
 @property (nonatomic) BOOL productRequestError;
@@ -47,17 +47,17 @@ NSString *const CMAlertCancelButtonTitle = @"Ok";
 
 @end
 
-@implementation CargoBayManager
+@implementation CargoManager
 
-static CargoBayManager *_storeKitManager = nil;
+static CargoManager *_storeKitManager = nil;
 
-+ (CargoBayManager *)sharedManager
++ (CargoManager *)sharedManager
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,
                   ^
     {
-        _storeKitManager = [[CargoBayManager alloc] init];
+        _storeKitManager = [[CargoManager alloc] init];
     });
     return _storeKitManager;
 }
@@ -87,7 +87,7 @@ static CargoBayManager *_storeKitManager = nil;
 
     [self loadProducts];
     
-    __weak CargoBayManager *weakSelf = self;
+    __weak CargoManager *weakSelf = self;
     [[CargoBay sharedManager] setPaymentQueueUpdatedTransactionsBlock:
     ^(SKPaymentQueue *queue, NSArray *transactions)
     {
@@ -133,7 +133,7 @@ static CargoBayManager *_storeKitManager = nil;
 
     [[NSNotificationCenter defaultCenter] addObserver:nil selector:nil name:UIWindowDidBecomeKeyNotification object:nil];
 
-    __weak CargoBayManager *weakSelf = self;
+    __weak CargoManager *weakSelf = self;
     [[CargoBay sharedManager] productsWithIdentifiers:[NSSet setWithArray:identifiers]
                                               success:
      ^(NSArray *products, NSArray *invalidIdentifiers)
@@ -183,7 +183,7 @@ static CargoBayManager *_storeKitManager = nil;
     {
         case SKPaymentTransactionStatePurchased:
         {
-            __weak CargoBayManager *weakSelf = self;
+            __weak CargoManager *weakSelf = self;
             [[CargoBay sharedManager] verifyTransaction:transaction
                                                password:nil
                                                 success:

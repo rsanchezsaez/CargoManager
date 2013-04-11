@@ -1,5 +1,5 @@
 //
-//  CargoBayManager.h
+//  CargoManager.h
 //
 //  Copyright (c) 2013 Ricardo Sánchez-Sáez (http://sanchez-saez.com/)
 //
@@ -29,19 +29,19 @@ extern NSString *const SMProductRequestDidReceiveResponseNotification;
 
 
 @class SKProduct;
-@protocol CargoBayManagerUIDelegate;
-@protocol CargoBayManagerContentDelegate;
+@protocol CargoManagerUIDelegate;
+@protocol CargoManagerContentDelegate;
 
 
-@interface CargoBayManager : NSObject
+@interface CargoManager : NSObject
 
 @property (nonatomic, readonly) BOOL productRequestDidReceiveResponse;
 @property (nonatomic, readonly) BOOL productRequestError;
 
-@property (nonatomic, weak) id <CargoBayManagerContentDelegate>  contentDelegate;
-@property (nonatomic, weak) id <CargoBayManagerUIDelegate>  UIDelegate;
+@property (nonatomic, weak) id <CargoManagerContentDelegate>  contentDelegate;
+@property (nonatomic, weak) id <CargoManagerUIDelegate>  UIDelegate;
 
-+ (CargoBayManager *)sharedManager;
++ (CargoManager *)sharedManager;
 
 - (void)loadStore;
 - (SKProduct *)productForIdentifier:(NSString *)identifier;
@@ -51,7 +51,7 @@ extern NSString *const SMProductRequestDidReceiveResponseNotification;
 @end
 
 
-@protocol CargoBayManagerContentDelegate <NSObject>
+@protocol CargoManagerContentDelegate <NSObject>
 
 // This method should return an array with all the productIdentifiers used by your App
 - (NSArray *)productIdentifiers;
@@ -69,7 +69,7 @@ extern NSString *const SMProductRequestDidReceiveResponseNotification;
 @end
 
 
-@protocol CargoBayManagerUIDelegate <NSObject>
+@protocol CargoManagerUIDelegate <NSObject>
 
 // Implement this method to update UI after a IAP has finished
 // This method is called both for successful and failed transactions

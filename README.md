@@ -137,7 +137,7 @@ which returns the product price formatted as a currency string in the user local
 ### CargoManagerUIDelegate protocol specification
 
 ```objective-c
-@protocol CargoBayManagerUIDelegate <NSObject>
+@protocol CargoManagerUIDelegate <NSObject>
 
 // Implement this method to update UI after a IAP has finished.
 // This method is called both for successful and failed transactions.
@@ -158,4 +158,4 @@ which returns the product price formatted as a currency string in the user local
 
 ## License
 
-CargoBayManager is available under the FreeBSD license. See the LICENSE file for more info.
+CargoManager is available under the FreeBSD license. See the LICENSE file for more info.

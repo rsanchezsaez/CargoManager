@@ -134,8 +134,6 @@ static CargoManager *_storeKitManager = nil;
 {
     NSArray *identifiers = [self.contentDelegate productIdentifiers];
 
-    [[NSNotificationCenter defaultCenter] addObserver:nil selector:nil name:UIWindowDidBecomeKeyNotification object:nil];
-
     __weak CargoManager *weakSelf = self;
     [[CargoBay sharedManager] productsWithIdentifiers:[NSSet setWithArray:identifiers]
                                               success:

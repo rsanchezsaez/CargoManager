@@ -58,7 +58,7 @@ static CargoManager *_storeKitManager = nil;
 {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken,
-                  ^
+    ^
     {
         _storeKitManager = [[CargoManager alloc] init];
     });
@@ -80,6 +80,11 @@ static CargoManager *_storeKitManager = nil;
     self.productRequestDidReceiveResponse = NO;
 
     return self;
+}
+
+- (void)dealloc
+{
+    [[SKPaymentQueue defaultQueue] removeTransactionObserver:[CargoBay sharedManager]];
 }
 
 // Call this method once in your AppDelegate's -(void)application:didFinishLaunchingWithOptions: method

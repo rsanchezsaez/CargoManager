@@ -152,10 +152,14 @@ which returns the product price formatted as a currency string in the user local
 @end
 ```
 
-### Contact
+## Apps
 
-[Ricardo Sánchez-Sáez](http://sanchez-saez.com)  
+CargoManager is used by [Trivia Pics Party](https://itunes.apple.com/app/trivia-pics-party/id626227166?mt=8).
 
-## License
+If your app and company uses CargoManager and want it listed here, just drop me a line.
 
-CargoManager is available under the FreeBSD license. See the LICENSE file for more info.
+## License & Contact
+
+CargoManager is available under the FreeBSD license so you can use it for commercial applications. See the LICENSE file for more info.
+
+It is maintained by [Ricardo Sánchez-Sáez](http://sanchez-saez.com) (rsanchez.saez [at] gmail [dot] com).

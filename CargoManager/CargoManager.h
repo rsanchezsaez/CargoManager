@@ -47,6 +47,8 @@ extern NSString *const CMProductRequestDidReceiveResponseNotification;
 + (CargoManager *)sharedManager;
 
 - (void)loadStore;
+- (void)retryLoadingProducts;
+
 - (SKProduct *)productForIdentifier:(NSString *)identifier;
 
 - (void)buyProduct:(SKProduct *)product;

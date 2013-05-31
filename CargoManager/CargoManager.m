@@ -44,6 +44,7 @@ NSString *const CMAlertCancelButtonTitle = @"Ok";
 
 @interface CargoManager ()
 
+@property (nonatomic) BOOL productRequestSent;
 @property (nonatomic) BOOL productRequestDidReceiveResponse;
 @property (nonatomic) BOOL productRequestError;
 @property (nonatomic) NSArray *cachedProducts;
@@ -77,7 +78,9 @@ static CargoManager *_storeKitManager = nil;
         return nil;
     }
 
+    self.productRequestSent = NO;
     self.productRequestDidReceiveResponse = NO;
+    self.productRequestError = NO;
 
     return self;
 }
@@ -92,8 +95,6 @@ static CargoManager *_storeKitManager = nil;
 {
     // Set CargoBay as App Store transaction observer
     [[SKPaymentQueue defaultQueue] addTransactionObserver:[CargoBay sharedManager]];
-
-    [self loadProducts];
     
     __weak CargoManager *weakSelf = self;
     [[CargoBay sharedManager] setPaymentQueueUpdatedTransactionsBlock:
@@ -133,6 +134,16 @@ static CargoManager *_storeKitManager = nil;
             [weakSelf downloadUpdated:download];
         }        
     }];
+
+    [self loadProducts];
+}
+
+- (void)retryLoadingProducts
+{
+    if (!self.productRequestSent && self.productRequestDidReceiveResponse && self.productRequestError)
+    {
+        [self loadProducts];
+    }
 }
 
 - (void)loadProducts
@@ -140,12 +151,17 @@ static CargoManager *_storeKitManager = nil;
     NSArray *identifiers = [self.contentDelegate productIdentifiers];
 
     __weak CargoManager *weakSelf = self;
+
+
+    self.productRequestSent = YES;
     [[CargoBay sharedManager] productsWithIdentifiers:[NSSet setWithArray:identifiers]
                                               success:
      ^(NSArray *products, NSArray *invalidIdentifiers)
-    {
+     {
          // Store cached products and send notification
          weakSelf.cachedProducts = products;
+
+         weakSelf.productRequestSent = NO;
          weakSelf.productRequestDidReceiveResponse = YES;
          weakSelf.productRequestError = NO;
 
@@ -156,8 +172,9 @@ static CargoManager *_storeKitManager = nil;
      }
                                               failure:
      ^(NSError *error)
-    {
+     {
          // Note error and send notification
+         weakSelf.productRequestSent = NO;
          weakSelf.productRequestDidReceiveResponse = YES;
          weakSelf.productRequestError = YES;
 

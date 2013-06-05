@@ -52,6 +52,7 @@ extern NSString *const CMProductRequestDidReceiveResponseNotification;
 - (SKProduct *)productForIdentifier:(NSString *)identifier;
 
 - (void)buyProduct:(SKProduct *)product;
+- (void)restorePurchasedProducts;
 
 @end
 

@@ -342,20 +342,30 @@ static CargoManager *_storeKitManager = nil;
     }
     else
     {
-        // DLog(@"IAP are disabled.")
-        // Warn the user that purchases are disabled.
-        // Display a transaction error here
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:CMCannotMakePaymentsAlertTitle
-                                                        message:CMCannotMakePaymentsAlertMessage
-                                                       delegate:nil
-                                              cancelButtonTitle:CMAlertCancelButtonTitle
-                                              otherButtonTitles:nil];
-        [alert show];
+        [self showCannotMakePaymentsAlert];
     }
 }
 
+- (void)showCannotMakePaymentsAlert
+{
+    // DLog(@"IAP are disabled.")
+    // Warn the user that purchases are disabled.
+    // Display a transaction error here
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:CMCannotMakePaymentsAlertTitle
+                                                    message:CMCannotMakePaymentsAlertMessage
+                                                   delegate:nil
+                                          cancelButtonTitle:CMAlertCancelButtonTitle
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
+- (void)restorePurchasedProducts
+{
+    [[SKPaymentQueue defaultQueue] restoreCompletedTransactions];
+}
+
 @end
- 
+
 
 @implementation SKProduct (LocalizedPrice)
 

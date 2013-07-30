@@ -1,15 +1,15 @@
+*NEW: Check out the [CargoManager Example iOS App](https://github.com/rsanchezsaez/CargoManagerExample).*
+
+---
 # CargoManager
 **The Essential StoreKit/CargoBay Companion**
 
----
 
-*Check out the new [CargoManager Example iOS App](https://github.com/rsanchezsaez/CargoManagerExample).*
-
----
+`CargoManager` is an open source library that helps you implement IAPs for iOS apps in a simple and encapsulated way by using the  by using the [delegate pattern](https://developer.apple.com/library/ios/#documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html).
 
 [`StoreKit`](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/StoreKit_Collection/) is the Apple framework for [making In-App Purchases](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html). It's pretty good, but it is ver low level and has a few rough edges. [`CargoBay`](https://github.com/mattt/CargoBay) is really nifty, but it keeps coding of In-App Purchases quite at a low level and it still is an involved process. 
 
-`CargoManager` abstracts most details of *StoreKit* and *CargoBay* by providing a simple and pretty much automated manager for your In-App Purchases by using the [delegate pattern](https://developer.apple.com/library/ios/#documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html).
+`CargoManager` abstracts most details of *StoreKit* and *CargoBay* by providing a simple and pretty much automated manager for your In-App Purchases.
 
 With *CargoManager* you only have to implement two protocols in your own classes. You will need to set these objects as *CargoManager* delegates:
 - An object conforming to the `CargoManagerContentDelegate` protocol. This delegate is mandatory. It provides all available Product ID strings to *CargoManager* (which in turn caches the returned products for store population). It also should respond to successful transaction events by providing the user requested content and storing it persistently to disk. Ideally, this delegate should be a singleton and should be alive at all times (a transaction is kept as pending even after relaunching the game, so it can complete even when you are not looking at the store UI).
@@ -19,7 +19,7 @@ Please note that before attempting to use `CargoManager` or `CargoBay` it is str
 
 ---
 
-In addition to the protocols, *CargoManager* provides these methods:
+In addition to the protocols, you will need to call these provided methods:
 
 ```objective-c
 // Call this method after setting the contentDelegate
@@ -164,7 +164,7 @@ which returns the product price formatted as a currency string in the user local
 
 ## Apps
 
-CargoManager is used by [Trivia Pics Party](https://itunes.apple.com/app/trivia-pics-party/id626227166?mt=8).
+CargoManager is used by [Trivia Pics Party!](http://appstore.com/triviapicsparty).
 
 If your app and company uses CargoManager and want it listed here, just drop me a line.
 

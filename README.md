@@ -1,6 +1,5 @@
 *NEW: Check out the [CargoManager Example iOS App](https://github.com/rsanchezsaez/CargoManagerExample).*
 
----
 # CargoManager
 **The Essential StoreKit/CargoBay Companion**
 

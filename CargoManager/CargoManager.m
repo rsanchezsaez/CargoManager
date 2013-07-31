@@ -33,13 +33,11 @@
 NSString *const CMProductRequestDidReceiveResponseNotification = @"CMProductRequestDidReveiveResponseNotification";
 
 
-NSString *const CMTransactionFailedAlertTitle = @"In App Purchase failed";
-NSString *const CMTransactionFailedAlertMessage = @"The purchase failed due to an error. Please, try again later.";
-
-NSString *const CMCannotMakePaymentsAlertTitle = @"In App Purchases are disabled";
-NSString *const CMCannotMakePaymentsAlertMessage = @"You can enable them again in Settings.";
-
-NSString *const CMAlertCancelButtonTitle = @"Ok";
+NSString *CMTransactionFailedAlertTitle = nil;
+NSString *CMTransactionFailedAlertMessage = nil;
+NSString *CMCannotMakePaymentsAlertTitle = nil;
+NSString *CMCannotMakePaymentsAlertMessage = nil;
+NSString *CMAlertCancelButtonTitle = nil;
 
 
 @interface CargoManager ()
@@ -78,6 +76,25 @@ static CargoManager *_storeKitManager = nil;
         return nil;
     }
 
+    CMTransactionFailedAlertTitle = NSLocalizedStringFromTable(@"TRANSACTION_FAILED_ALERT_TITLE",
+                                                                               @"CargoManagerLocalizable",
+                                                                               @"In App Purchase failed");
+    CMTransactionFailedAlertMessage = NSLocalizedStringFromTable(@"TRANSACTION_FAILED_ALERT_MESSAGE",
+                                                                                 @"CargoManagerLocalizable",
+                                                                                 @"The purchase failed due to an error. Please, try again later.");
+    
+    CMCannotMakePaymentsAlertTitle = NSLocalizedStringFromTable(@"CANNOT_MAKE_PAYMENTS_ALERT_TITLE",
+                                                                                @"CargoManagerLocalizable",
+                                                                                @"In App Purchases are disabled");
+    CMCannotMakePaymentsAlertMessage = NSLocalizedStringFromTable(@"CANNOT_MAKE_PAYMENTS_ALERT_MESSAGE",
+                                                                                  @"CargoManagerLocalizable",
+                                                                                  @"You can enable them again in Settings.");
+    
+    CMAlertCancelButtonTitle = NSLocalizedStringFromTable(@"ALERT_CANCEL_BUTTON_TITLE",
+                                                                          @"CargoManagerLocalizable",
+                                                                          @"Ok");
+
+    
     self.productRequestSent = NO;
     self.productRequestDidReceiveResponse = NO;
     self.productRequestError = NO;

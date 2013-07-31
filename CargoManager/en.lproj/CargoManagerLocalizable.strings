@@ -1,0 +1,15 @@
+/* 
+  CargoManager.strings
+  CargoManagerExample
+
+  Created by Ricardo Sánchez-Sáez on 7/31/13.
+  Copyright (c) 2013 Manwin. All rights reserved.
+*/
+
+"TRANSACTION_FAILED_ALERT_TITLE" = "In App Purchase failed";
+"TRANSACTION_FAILED_ALERT_MESSAGE" = "The purchase failed due to an error. Please, try again later.";
+
+"CANNOT_MAKE_PAYMENTS_ALERT_TITLE" = "In App Purchases are disabled";
+"CANNOT_MAKE_PAYMENTS_ALERT_MESSAGE" = "You can enable them again in Settings.";
+
+"ALERT_CANCEL_BUTTON_TITLE" = "Ok";

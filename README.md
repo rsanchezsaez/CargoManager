@@ -1,7 +1,7 @@
 *NEW: Check out the [CargoManager Example iOS App](https://github.com/rsanchezsaez/CargoManagerExample).*
 
 # CargoManager
-**The Essential StoreKit/CargoBay Companion**
+**Implement StoreKit easily**
 
 
 `CargoManager` is an open source library that helps you implement IAPs for iOS apps in a simple and encapsulated way by using the  by using the [delegate pattern](https://developer.apple.com/library/ios/#documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html).

@@ -6,7 +6,7 @@
 
 `CargoManager` is an open source library that helps you implement IAPs for iOS apps in a simple and encapsulated way by using the  by using the [delegate pattern](https://developer.apple.com/library/ios/#documentation/General/Conceptual/DevPedia-CocoaCore/Delegation.html).
 
-[`StoreKit`](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/StoreKit_Collection/) is the Apple framework for [making In-App Purchases](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html). It's pretty good, but it is ver low level and has a few rough edges. [`CargoBay`](https://github.com/mattt/CargoBay) is really nifty, but it keeps coding of In-App Purchases quite at a low level and it still is an involved process. 
+[`StoreKit`](http://developer.apple.com/library/ios/#documentation/StoreKit/Reference/StoreKit_Collection/) is the Apple framework for [making In-App Purchases](http://developer.apple.com/library/ios/#documentation/NetworkingInternet/Conceptual/StoreKitGuide/Introduction/Introduction.html). It's pretty good but it is very low level and has a few rough edges. [`CargoBay`](https://github.com/mattt/CargoBay) is really nifty, but it keeps coding of In-App Purchases quite at a low level and it still is an involved process. 
 
 `CargoManager` abstracts most details of *StoreKit* and *CargoBay* by providing a simple and pretty much automated manager for your In-App Purchases.
 
